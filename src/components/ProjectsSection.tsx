@@ -75,7 +75,7 @@ export default function ProjectsSection() {
   return (
     <section
       id="progetti"
-      className="w-full bg-white px-6 py-20 sm:px-10 md:py-24 lg:px-[200px] lg:py-[100px]"
+      className="w-full bg-[#fafafa] px-6 py-20 sm:px-10 md:py-24 lg:px-[200px] lg:py-[100px]"
     >
       <div className="mx-auto flex max-w-[1040px] flex-col gap-16 lg:gap-[100px]">
         {PROJECTS.map((project) => (

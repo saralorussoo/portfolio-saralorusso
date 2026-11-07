@@ -442,9 +442,9 @@ export default function FuoriCorsoPage() {
           <img
             src={postersGrid}
             width={2080}
-            height={2600}
+            height={3468}
             loading="lazy"
-            alt="Griglia delle nove locandine e menu della stagione Fall/Winter 2026: Club House 23 ottobre, Chiappini & Giugni 16 ottobre, Parco EX Seminario 2 ottobre, Tracklist di ottobre, Club House 26 settembre, 18 settembre, 12 settembre, 5 settembre e Tracklist di settembre"
+            alt="Griglia delle dodici locandine e menu della stagione Fall/Winter 2026: Tracklist di novembre, 6 novembre Chiappini & Giugni, infrazione del 30 ottobre, Club House 23 ottobre, Chiappini & Giugni 16 ottobre, Parco EX Seminario 2 ottobre, Tracklist di ottobre, Club House 26 settembre, 18 settembre, 12 settembre, 5 settembre e Tracklist di settembre"
             className="h-auto w-full max-w-[1040px]"
           />
         </CaseSection>

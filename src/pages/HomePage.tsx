@@ -32,7 +32,7 @@ export default function HomePage() {
   }, [returnTarget]);
 
   return (
-    <div className="min-h-screen w-full bg-white">
+    <div className="min-h-screen w-full bg-[#fafafa]">
       <main>
         <Hero />
         <ProjectsSection />
