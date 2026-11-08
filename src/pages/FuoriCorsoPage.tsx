@@ -109,6 +109,7 @@ type OtherProject = {
 const OTHER_PROJECTS: OtherProject[] = [
   {
     id: "head-spa",
+    to: "/head-spa",
     title: ["Catalogo Head Spa Suite11"],
     cardClassName: "rounded-[20px] bg-[#ffc9f1]",
     buttonTone: "border-white bg-[#ffc9f1] text-black",

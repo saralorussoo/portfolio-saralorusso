@@ -1,5 +1,6 @@
 import ProjectCard, { type Project } from "./ProjectCard";
 import fuoriCorsoImg from "../assets/images/project-fuoricorso.jpg";
+import headSpaImg from "../assets/images/project-headspa.webp";
 import spreadMilano from "../assets/bob-noorda/spread-milano.jpg";
 import spreadNewYork from "../assets/bob-noorda/spread-newyork.jpg";
 import spreadSaoPaulo from "../assets/bob-noorda/spread-saopaulo.jpg";
@@ -22,12 +23,18 @@ const PROJECTS: Project[] = [
     buttonTone: "border-white bg-[#99202f] text-white",
   },
   {
+    id: "head-spa",
+    to: "/head-spa",
     period: "Ott 2026",
     title: ["Catalogo Head Spa", "Suite11"],
     description:
       "Progettazione di un catalogo cartaceo dedicato ai trattamenti Head Spa per un salone di bellezza, sviluppato in Affinity.",
-    cardClassName: "bg-[#ffc9f1]",
-    buttonTone: PINK_BUTTON,
+    image: headSpaImg,
+    imageAlt:
+      "Catalogo Head Spa Suite11: copertina scura con il logo e una doppia pagina dedicata al rituale La Quintessenza",
+    imagePadding: "p-6 lg:p-[34.5px]",
+    cardClassName: "border border-[rgba(55,27,3,0.3)] bg-[rgba(55,27,3,0.1)]",
+    buttonTone: "border-white bg-[#371b03] text-white",
   },
   {
     id: "bob-noorda",

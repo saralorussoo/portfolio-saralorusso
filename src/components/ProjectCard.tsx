@@ -14,6 +14,8 @@ export type Project = {
   description: string;
   image?: string;
   imageAlt?: string;
+  /** Padding around `image` inside the card (default `p-6`). */
+  imagePadding?: string;
   /** Four pages shown as a 2x2 grid inside the card (instead of one `image`). */
   gallery?: { src: string; alt: string }[];
   cardClassName: string;
@@ -38,7 +40,7 @@ export default function ProjectCard({ project }: { project: Project }) {
         <img
           src={project.image}
           alt={project.imageAlt ?? ""}
-          className="h-full w-full object-contain p-6"
+          className={`h-full w-full object-contain ${project.imagePadding ?? "p-6"}`}
           loading="lazy"
         />
       )}

@@ -7,6 +7,8 @@ export default {
         sans: ["Helvetica Now Display", "Helvetica Neue", "Arial", "sans-serif"],
         neulis: ["Neulis Cursive", "cursive"],
         aston: ["Aston Script", "cursive"],
+        tan: ["TAN Pearl", "serif"],
+        manrope: ["Manrope", "sans-serif"],
       },
       colors: {
         ink: "#1a1a1a",
