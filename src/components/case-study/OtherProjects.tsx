@@ -16,6 +16,8 @@ type OtherProject = {
   id: string;
   /** Route of the case study; projects without one get an inert button. */
   to?: string;
+  /** Not shown until its case study exists. */
+  hidden?: boolean;
   title: string[];
   cardClassName: string;
   buttonTone: string;
@@ -64,12 +66,14 @@ const PROJECTS = {
   },
   kalos: {
     id: "kalos",
+    hidden: true,
     title: ["Sito web palestra", "Kalos Studio"],
     cardClassName: "rounded-[20px] border border-[rgba(189,41,29,0.3)] bg-[rgba(189,41,29,0.1)]",
     buttonTone: "border-white bg-[#bd291d] text-white",
   },
   osteopata: {
     id: "osteopata",
+    hidden: true,
     title: ["Sito web osteopata", "Mattia Bettini"],
     cardClassName: "rounded-[20px] bg-[#ffc9f1]",
     buttonTone: "border-white bg-[#ffc9f1] text-black",
@@ -85,7 +89,8 @@ export type OtherProjectId = keyof typeof PROJECTS;
  */
 export default function OtherProjects({ ids }: { ids: OtherProjectId[] }) {
   const reduce = useReducedMotion();
-  const projects: OtherProject[] = ids.map((id) => PROJECTS[id]);
+  const projects: OtherProject[] = ids.map((id): OtherProject => PROJECTS[id]).filter((p) => !p.hidden);
+  if (projects.length === 0) return null;
 
   return (
     <CaseSection bordered={false} className="flex flex-col gap-10 md:!py-24 lg:!py-[200px]">
@@ -128,7 +133,12 @@ export default function OtherProjects({ ids }: { ids: OtherProjectId[] }) {
             </motion.div>
           );
           return (
-            <div key={id} className="flex min-w-0 flex-1 flex-col gap-6">
+            <div
+              key={id}
+              className={`flex min-w-0 flex-col gap-6 ${
+                projects.length === 1 ? "md:w-[calc(50%-30px)] md:flex-none" : "flex-1"
+              }`}
+            >
               {to ? (
                 <Link
                   to={to}

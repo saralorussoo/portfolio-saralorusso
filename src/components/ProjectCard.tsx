@@ -9,6 +9,8 @@ export type Project = {
   id?: string;
   /** Route of the case-study page. Only projects that have one get a link. */
   to?: string;
+  /** Kept in the data but not shown (project whose case study is not ready yet). */
+  hidden?: boolean;
   period: string;
   title: string[];
   description: string;

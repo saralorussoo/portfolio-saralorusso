@@ -69,6 +69,7 @@ const PROJECTS: Project[] = [
   },
   {
     period: "Ago – Ott 2025",
+    hidden: true,
     title: ["Sito web palestra", "Kalos Studio"],
     description:
       "Realizzazione di un sito responsive, progettazione dell'interfaccia e dell'identità visiva, sviluppato in Framer.",
@@ -77,6 +78,7 @@ const PROJECTS: Project[] = [
   },
   {
     period: "Lug – Sett 2024",
+    hidden: true,
     title: ["Sito web osteopata", "Mattia Bettini"],
     description:
       "Realizzazione di un sito responsive, progettazione dell'interfaccia e dell'identità visiva, sviluppato in Framer.",
@@ -92,7 +94,7 @@ export default function ProjectsSection() {
       className="w-full bg-[#fafafa] px-6 py-20 sm:px-10 md:py-24 lg:px-[200px] lg:py-[100px]"
     >
       <div className="mx-auto flex max-w-[1040px] flex-col gap-16 lg:gap-[100px]">
-        {PROJECTS.map((project) => (
+        {PROJECTS.filter((project) => !project.hidden).map((project) => (
           <ProjectCard key={project.title.join(" ")} project={project} />
         ))}
       </div>
