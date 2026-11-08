@@ -8,6 +8,7 @@ import {
   loadBobNoordaPage,
   loadFuoriCorsoPage,
   loadHeadSpaPage,
+  loadNattbadPage,
 } from "./lib/routes";
 
 // Case-study pages and About are split out of the main bundle; they load on
@@ -15,6 +16,7 @@ import {
 const FuoriCorsoPage = lazy(loadFuoriCorsoPage);
 const BobNoordaPage = lazy(loadBobNoordaPage);
 const HeadSpaPage = lazy(loadHeadSpaPage);
+const NattbadPage = lazy(loadNattbadPage);
 const AboutPage = lazy(loadAboutPage);
 
 function App() {
@@ -36,6 +38,7 @@ function App() {
           <Route path="/fuori-corso" element={<FuoriCorsoPage />} />
           <Route path="/bob-noorda" element={<BobNoordaPage />} />
           <Route path="/head-spa" element={<HeadSpaPage />} />
+          <Route path="/nattbad" element={<NattbadPage />} />
           <Route path="*" element={<HomePage />} />
         </Routes>
       </Suspense>

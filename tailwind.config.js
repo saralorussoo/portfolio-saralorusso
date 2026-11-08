@@ -9,6 +9,8 @@ export default {
         aston: ["Aston Script", "cursive"],
         tan: ["TAN Pearl", "serif"],
         manrope: ["Manrope", "sans-serif"],
+        montserrat: ["Montserrat", "sans-serif"],
+        bricolage: ["Bricolage Grotesque", "sans-serif"],
       },
       colors: {
         ink: "#1a1a1a",

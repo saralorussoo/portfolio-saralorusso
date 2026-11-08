@@ -31,56 +31,50 @@ export default function MetroLine() {
       ref={ref}
       role="img"
       aria-label={`Linea della mostra con le cinque sale: ${ROOMS.map((r) => `${r.room}, ${r.name}`).join("; ")}.`}
-      className="flex w-full max-w-[520px] flex-col"
+      className="flex w-full max-w-[268px] flex-col pt-5"
     >
-      {ROOMS.map((r, i) => (
-        <div key={r.room} className="flex items-stretch gap-4 sm:gap-6">
-          {/* Dot + connecting segments, in their own fixed-width gutter. */}
-          <div className="flex w-4 shrink-0 flex-col items-center">
+      {ROOMS.map((r, i) => {
+        const last = i === ROOMS.length - 1;
+        return (
+          <div key={r.room} className="relative flex h-14 items-start gap-6 sm:gap-[60px]">
+            {/* Station: a ring at the top of the row, with the line running down to the next one. */}
             <motion.div
               aria-hidden="true"
-              className="w-[3px] flex-1 origin-top"
-              style={{ backgroundColor: i === 0 ? "transparent" : ROOMS[i - 1].hex }}
+              className="absolute left-[5.8px] top-2 w-[5.65px] origin-top"
+              style={{ backgroundColor: r.hex, height: last ? 48 : 56 }}
               initial={{ scaleY: reduce ? 1 : 0 }}
               animate={play ? { scaleY: 1 } : reduce ? { scaleY: 1 } : undefined}
-              transition={{ duration: 0.3, ease: "easeOut", delay: segmentDelay(i - 1) }}
+              transition={{ duration: 0.3, ease: "easeOut", delay: segmentDelay(i) }}
             />
             <motion.span
               aria-hidden="true"
-              className="my-1 size-3.5 shrink-0 rounded-full border-[3px] bg-white"
+              className="absolute left-0 top-0 size-[16.9px] rounded-full border-[3.53px] bg-white"
               style={{ borderColor: r.hex }}
               initial={{ scale: reduce ? 1 : 0 }}
               animate={play ? { scale: 1 } : reduce ? { scale: 1 } : undefined}
               transition={{ type: "spring", stiffness: 420, damping: 20, delay: dotDelay(i) }}
             />
-            <motion.div
-              aria-hidden="true"
-              className="w-[3px] flex-1 origin-top"
-              style={{ backgroundColor: i === ROOMS.length - 1 ? "transparent" : r.hex }}
-              initial={{ scaleY: reduce ? 1 : 0 }}
-              animate={play ? { scaleY: 1 } : reduce ? { scaleY: 1 } : undefined}
-              transition={{ duration: 0.3, ease: "easeOut", delay: segmentDelay(i) }}
-            />
-          </div>
 
-          <motion.div
-            initial={{ opacity: reduce ? 1 : 0, x: reduce ? 0 : -8 }}
-            animate={play ? { opacity: 1, x: 0 } : reduce ? { opacity: 1, x: 0 } : undefined}
-            transition={{ duration: 0.35, ease: "easeOut", delay: dotDelay(i) + 0.05 }}
-            className="flex flex-1 flex-wrap items-baseline gap-x-4 gap-y-0.5 py-2"
-          >
-            <span
-              className="w-[62px] shrink-0 text-[18px] font-bold leading-[normal] tracking-[-0.36px]"
-              style={{ color: r.hex === "#000000" ? "#000000" : r.hex }}
+            <motion.span
+              initial={{ opacity: reduce ? 1 : 0, x: reduce ? 0 : -8 }}
+              animate={play ? { opacity: 1, x: 0 } : reduce ? { opacity: 1, x: 0 } : undefined}
+              transition={{ duration: 0.35, ease: "easeOut", delay: dotDelay(i) + 0.05 }}
+              className="ml-[29px] mt-[15px] w-[49px] shrink-0 whitespace-nowrap text-[18px] font-bold leading-[26px] tracking-[-0.36px]"
+              style={{ color: r.hex }}
             >
               {r.room}
-            </span>
-            <span className="min-w-[130px] flex-1 text-[16px] font-medium leading-[normal] tracking-[-0.32px] text-[#141414]">
+            </motion.span>
+            <motion.span
+              initial={{ opacity: reduce ? 1 : 0, x: reduce ? 0 : -8 }}
+              animate={play ? { opacity: 1, x: 0 } : reduce ? { opacity: 1, x: 0 } : undefined}
+              transition={{ duration: 0.35, ease: "easeOut", delay: dotDelay(i) + 0.1 }}
+              className="mt-4 min-w-0 flex-1 text-[16px] font-medium leading-6 tracking-[-0.32px] text-[#141414]"
+            >
               {r.name}
-            </span>
-          </motion.div>
-        </div>
-      ))}
+            </motion.span>
+          </div>
+        );
+      })}
     </div>
   );
 }

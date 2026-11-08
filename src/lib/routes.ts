@@ -7,6 +7,7 @@ const CASE_STUDY_LOADERS = {
   "/fuori-corso": () => import("../pages/FuoriCorsoPage"),
   "/bob-noorda": () => import("../pages/BobNoordaPage"),
   "/head-spa": () => import("../pages/HeadSpaPage"),
+  "/nattbad": () => import("../pages/NattbadPage"),
 } as const;
 
 const PAGE_LOADERS = {
@@ -17,6 +18,7 @@ const PAGE_LOADERS = {
 export const loadFuoriCorsoPage = CASE_STUDY_LOADERS["/fuori-corso"];
 export const loadBobNoordaPage = CASE_STUDY_LOADERS["/bob-noorda"];
 export const loadHeadSpaPage = CASE_STUDY_LOADERS["/head-spa"];
+export const loadNattbadPage = CASE_STUDY_LOADERS["/nattbad"];
 export const loadAboutPage = PAGE_LOADERS["/about"];
 
 /** Case studies have their own "Indietro" button instead of the main navbar. */

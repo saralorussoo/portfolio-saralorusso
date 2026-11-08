@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import CaseNavbar from "../components/case-study/CaseNavbar";
-import CaseStudyButton from "../components/CaseStudyButton";
+import OtherProjects from "../components/case-study/OtherProjects";
 import CareerChat from "../components/case-study/CareerChat";
 import MetroLine from "../components/case-study/MetroLine";
 import HeroLines from "../components/case-study/HeroLines";
@@ -90,11 +90,6 @@ const COLORS = [
   { hex: "#015099" },
   { hex: "#EDB404" },
   { hex: "#C99CC6" },
-];
-
-const OTHER_PROJECTS = [
-  ["Progetto universitario", "Sito web in Wordpress"],
-  ["Sito web palestra", "Kalos Studio"],
 ];
 
 /* -------------------------------- helpers --------------------------------- */
@@ -470,29 +465,29 @@ export default function BobNoordaPage() {
         </CaseSection>
 
         {/* Elaborati */}
-        <CaseSection className="flex flex-col items-center gap-6">
-          <div className="flex w-full flex-col gap-3 sm:flex-row">
+        <CaseSection className="flex flex-col items-center gap-6 md:gap-10">
+          <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-[13.9px]">
             <img
               src={posterColor}
               alt="Locandina Design Orienting a colori, con il titolo disegnato come linee di metropolitana"
               loading="lazy"
-              className="h-auto w-full rounded border-2 border-[#f0f0f0] sm:w-1/3"
+              className="h-auto w-full rounded border-2 border-[#f0f0f0]"
             />
             <img
               src={posterLineArt}
               alt="Variante della locandina Design Orienting con le sole linee colorate, senza fondo"
               loading="lazy"
-              className="h-auto w-full rounded border-2 border-[#f0f0f0] sm:w-1/3"
+              className="h-auto w-full rounded border-2 border-[#f0f0f0]"
             />
             <img
               src={posterIndice}
               alt="Pagina indice del catalogo, con le cinque sale numerate lungo la linea di metropolitana"
               loading="lazy"
-              className="h-auto w-full rounded sm:w-1/3"
+              className="h-auto w-full rounded"
             />
           </div>
 
-          <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2">
+          <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-x-[17px] sm:gap-y-4">
             <img
               src={spreadMilano}
               alt="Doppia pagina del catalogo dedicata alla metropolitana di Milano, 1963–1964"
@@ -519,18 +514,18 @@ export default function BobNoordaPage() {
             />
           </div>
 
-          <div className="flex w-full flex-col gap-3 sm:flex-row">
+          <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-x-[38.5px]">
             <img
               src={framePoster}
               alt="Locandina Bob Noorda Design Orienting, con il titolo composto come una linea di metropolitana"
               loading="lazy"
-              className="h-auto w-full rounded border border-[#f0f0f0] sm:w-1/2"
+              className="h-auto w-full rounded border border-[#f0f0f0]"
             />
             <img
               src={frameTireCatalogue}
               alt="Doppia pagina del catalogo dedicata al progetto Bob Noorda per Pirelli"
               loading="lazy"
-              className="h-auto w-full rounded border border-[#f0f0f0] sm:w-1/2"
+              className="h-auto w-full rounded border border-[#f0f0f0]"
             />
           </div>
         </CaseSection>
@@ -561,27 +556,7 @@ export default function BobNoordaPage() {
         </CaseSection>
 
         {/* Altri progetti */}
-        <CaseSection bordered={false} className="flex flex-col gap-10 md:!py-24 lg:!py-[200px]">
-          <SectionLabel>Altri progetti</SectionLabel>
-          <div className="flex flex-col gap-10 md:flex-row md:gap-[60px]">
-            {OTHER_PROJECTS.map(([kind, title]) => (
-              <div key={title} className="flex min-w-0 flex-1 flex-col gap-6">
-                <motion.div
-                  whileHover={reduce ? undefined : { y: -6 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 22 }}
-                  className="aspect-[687/420] w-full rounded-[20px] bg-[#ffc9f1] shadow-card"
-                />
-                <div className="flex flex-wrap items-center gap-3">
-                  <h3 className="min-w-[180px] flex-1 text-xl font-medium leading-[normal] tracking-[-0.4px] text-black">
-                    <span className="block">{kind}</span>
-                    <span className="block">{title}</span>
-                  </h3>
-                  <CaseStudyButton>Apri case study</CaseStudyButton>
-                </div>
-              </div>
-            ))}
-          </div>
-        </CaseSection>
+        <OtherProjects ids={["nattbad", "kalos"]} />
       </main>
     </motion.div>
   );

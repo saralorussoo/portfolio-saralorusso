@@ -1,14 +1,11 @@
 import { useEffect, useLayoutEffect, useRef, type ReactNode } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
-import { Link } from "react-router-dom";
 import CaseNavbar from "../components/case-study/CaseNavbar";
-import CaseStudyButton from "../components/CaseStudyButton";
+import OtherProjects from "../components/case-study/OtherProjects";
 import CountUp from "../components/case-study/CountUp";
 import DesignProcessSection from "../components/case-study/DesignProcessSection";
 import ProblemChats from "../components/case-study/ProblemChats";
 import ResearchSection from "../components/case-study/ResearchSection";
-import { setReturnTarget } from "../lib/returnTarget";
-import { prefetchCaseStudy } from "../lib/routes";
 import {
   Body,
   CaseSection,
@@ -22,10 +19,6 @@ import heroLogo from "../assets/fuori-corso/hero-logo.png";
 import postersGrid from "../assets/fuori-corso/posters-grid.jpg";
 import lightbulb from "../assets/fuori-corso/lightbulb.svg";
 import instagramIcon from "../assets/fuori-corso/instagram.svg";
-import spreadMilano from "../assets/bob-noorda/spread-milano.jpg";
-import spreadNewYork from "../assets/bob-noorda/spread-newyork.jpg";
-import spreadSaoPaulo from "../assets/bob-noorda/spread-saopaulo.jpg";
-import spreadIdentita from "../assets/bob-noorda/spread-identita.jpg";
 
 /* ---------------------------------- data --------------------------------- */
 
@@ -94,40 +87,6 @@ const NEXT_STEPS = [
   "Analisi e metriche Instagram: monitorare sistematicamente i dati di performance (engagement qualitativo, click e salvataggi) per prendere decisioni basate su evidenze concrete.",
   "Feedback loop con team e pubblico: raccogliere spunti, reazioni e commenti degli utenti e confrontarsi con il team per perfezionare la visual.",
   "Ottimizzazione continua: testare ed evolvere costantemente i contenuti per massimizzare impatto visivo e coinvolgimento.",
-];
-
-type OtherProject = {
-  id: string;
-  /** Route of the case study; projects without one get an inert button. */
-  to?: string;
-  title: string[];
-  cardClassName: string;
-  buttonTone: string;
-  gallery?: { src: string; alt: string }[];
-};
-
-const OTHER_PROJECTS: OtherProject[] = [
-  {
-    id: "head-spa",
-    to: "/head-spa",
-    title: ["Catalogo Head Spa Suite11"],
-    cardClassName: "rounded-[20px] bg-[#ffc9f1]",
-    buttonTone: "border-white bg-[#ffc9f1] text-black",
-  },
-  {
-    id: "bob-noorda",
-    to: "/bob-noorda",
-    title: ["Progetto universitario:", "Mostra su Bob Noorda"],
-    cardClassName:
-      "rounded-[14.265px] border border-[rgba(247,193,1,0.3)] bg-[rgba(247,193,1,0.1)]",
-    buttonTone: "border-white bg-[#f7c101] text-black",
-    gallery: [
-      { src: spreadMilano, alt: "Doppia pagina del catalogo dedicata alla metropolitana di Milano" },
-      { src: spreadNewYork, alt: "Doppia pagina del catalogo dedicata alla New York City Subway" },
-      { src: spreadSaoPaulo, alt: "Doppia pagina del catalogo dedicata al Metrô de São Paulo" },
-      { src: spreadIdentita, alt: "Doppia pagina del catalogo dedicata all'identità visiva" },
-    ],
-  },
 ];
 
 /* -------------------------------- helpers -------------------------------- */
@@ -559,74 +518,7 @@ export default function FuoriCorsoPage() {
         </CaseSection>
 
         {/* Altri progetti */}
-        <CaseSection bordered={false} className="flex flex-col gap-10 md:!py-24 lg:!py-[200px]">
-          <SectionLabel>Altri progetti</SectionLabel>
-          <div className="flex flex-col gap-10 md:flex-row md:items-center md:gap-[60px]">
-            {OTHER_PROJECTS.map(({ id, to, title, cardClassName, buttonTone, gallery }) => {
-              const rememberCard = () => setReturnTarget(id);
-              const card = (
-                <motion.div
-                  whileHover={reduce ? undefined : { y: -6 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 22 }}
-                  style={{ containerType: "inline-size" }}
-                  className={`relative flex aspect-[687/420] w-full items-center justify-center overflow-hidden shadow-card ${cardClassName}`}
-                >
-                  {gallery && (
-                    <div className="grid w-[75.9%] grid-cols-2" style={{ gap: "3cqw" }}>
-                      {gallery.map((page) => (
-                        <img
-                          key={page.src}
-                          src={page.src}
-                          alt={page.alt}
-                          loading="lazy"
-                          draggable={false}
-                          className="aspect-[1191/842] w-full border-solid border-[#f0f0f0] object-cover"
-                          style={{ borderWidth: "0.353cqw" }}
-                        />
-                      ))}
-                    </div>
-                  )}
-                </motion.div>
-              );
-              return (
-                <div key={id} className="flex min-w-0 flex-1 flex-col gap-6">
-                  {to ? (
-                    <Link
-                      to={to}
-                      tabIndex={-1}
-                      aria-hidden="true"
-                      onClick={rememberCard}
-                      onMouseEnter={() => prefetchCaseStudy(to)}
-                      className="block rounded-[20px] outline-none"
-                    >
-                      {card}
-                    </Link>
-                  ) : (
-                    card
-                  )}
-                  <div className="flex flex-wrap items-center gap-3">
-                    <h3 className="min-w-[180px] flex-1 text-xl font-medium leading-[normal] tracking-[-0.4px] text-black">
-                      {title.map((line) => (
-                        <span key={line} className="block">
-                          {line}
-                        </span>
-                      ))}
-                    </h3>
-                    <CaseStudyButton
-                      large
-                      tone={buttonTone}
-                      to={to}
-                      onNavigate={rememberCard}
-                      onPrefetch={to ? () => prefetchCaseStudy(to) : undefined}
-                    >
-                      Apri case study
-                    </CaseStudyButton>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </CaseSection>
+        <OtherProjects ids={["head-spa", "bob-noorda"]} />
       </main>
     </motion.div>
   );

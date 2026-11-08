@@ -1,8 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import CaseNavbar from "../components/case-study/CaseNavbar";
-import CaseStudyButton from "../components/CaseStudyButton";
+import OtherProjects from "../components/case-study/OtherProjects";
 import {
   Body,
   CaseSection,
@@ -12,8 +11,6 @@ import {
   SectionLabel,
   TagPill,
 } from "../components/case-study/primitives";
-import { setReturnTarget } from "../lib/returnTarget";
-import { prefetchCaseStudy } from "../lib/routes";
 import suiteLogo from "../assets/head-spa/suite11-logo.svg";
 import lightbulb from "../assets/head-spa/lightbulb.svg";
 import anatomy from "../assets/head-spa/anatomy.jpg";
@@ -25,10 +22,6 @@ import pageRitual3 from "../assets/head-spa/page-08-09-ritual-3.jpg";
 import pageRitual4 from "../assets/head-spa/page-10-11-ritual-4.jpg";
 import pageBack from "../assets/head-spa/page-12-back.jpg";
 import affinityIcon from "../assets/bob-noorda/affinity-icon.png";
-import spreadMilano from "../assets/bob-noorda/spread-milano.jpg";
-import spreadNewYork from "../assets/bob-noorda/spread-newyork.jpg";
-import spreadSaoPaulo from "../assets/bob-noorda/spread-saopaulo.jpg";
-import spreadIdentita from "../assets/bob-noorda/spread-identita.jpg";
 
 /* ---------------------------------- data --------------------------------- */
 
@@ -159,30 +152,6 @@ const LESSONS = [
   "Prevedere margini per revisioni e imprevisti.",
   "Coinvolgere tempestivamente i fornitori nel processo.",
   "Considerare la fase di produzione come parte integrante della progettazione.",
-];
-
-const OTHER_PROJECTS = [
-  {
-    id: "bob-noorda",
-    to: "/bob-noorda",
-    title: ["Progetto universitario:", "Mostra su Bob Noorda"],
-    cardClassName:
-      "rounded-[14.265px] border border-[rgba(247,193,1,0.3)] bg-[rgba(247,193,1,0.1)]",
-    buttonTone: "border-white bg-[#f7c101] text-black",
-    gallery: [
-      { src: spreadMilano, alt: "Doppia pagina del catalogo dedicata alla metropolitana di Milano" },
-      { src: spreadNewYork, alt: "Doppia pagina del catalogo dedicata alla New York City Subway" },
-      { src: spreadSaoPaulo, alt: "Doppia pagina del catalogo dedicata al Metrô de São Paulo" },
-      { src: spreadIdentita, alt: "Doppia pagina del catalogo dedicata all'identità visiva" },
-    ],
-  },
-  {
-    id: "wordpress",
-    title: ["Progetto universitario:", "Sito web in Wordpress"],
-    cardClassName: "rounded-[20px] bg-[#ffc9f1]",
-    buttonTone: "border-white bg-[#ffc9f1] text-black",
-    gallery: undefined,
-  },
 ];
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -897,74 +866,7 @@ export default function HeadSpaPage() {
         </CaseSection>
 
         {/* Altri progetti */}
-        <CaseSection bordered={false} className="flex flex-col gap-10 md:!py-24 lg:!py-[200px]">
-          <SectionLabel>Altri progetti</SectionLabel>
-          <div className="flex flex-col gap-10 md:flex-row md:items-center md:gap-[60px]">
-            {OTHER_PROJECTS.map(({ id, to, title, cardClassName, buttonTone, gallery }) => {
-              const rememberCard = () => setReturnTarget(id);
-              const card = (
-                <motion.div
-                  whileHover={reduce ? undefined : { y: -6 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 22 }}
-                  style={{ containerType: "inline-size" }}
-                  className={`relative flex aspect-[687/420] w-full items-center justify-center overflow-hidden shadow-card ${cardClassName}`}
-                >
-                  {gallery && (
-                    <div className="grid w-[75.9%] grid-cols-2" style={{ gap: "3cqw" }}>
-                      {gallery.map((page) => (
-                        <img
-                          key={page.src}
-                          src={page.src}
-                          alt={page.alt}
-                          loading="lazy"
-                          draggable={false}
-                          className="aspect-[1191/842] w-full border-solid border-[#f0f0f0] object-cover"
-                          style={{ borderWidth: "0.353cqw" }}
-                        />
-                      ))}
-                    </div>
-                  )}
-                </motion.div>
-              );
-              return (
-                <div key={id} className="flex min-w-0 flex-1 flex-col gap-6">
-                  {to ? (
-                    <Link
-                      to={to}
-                      tabIndex={-1}
-                      aria-hidden="true"
-                      onClick={rememberCard}
-                      onMouseEnter={() => prefetchCaseStudy(to)}
-                      className="block rounded-[20px] outline-none"
-                    >
-                      {card}
-                    </Link>
-                  ) : (
-                    card
-                  )}
-                  <div className="flex flex-wrap items-center gap-3">
-                    <h3 className="min-w-[180px] flex-1 text-xl font-medium leading-[normal] tracking-[-0.4px] text-black">
-                      {title.map((line) => (
-                        <span key={line} className="block">
-                          {line}
-                        </span>
-                      ))}
-                    </h3>
-                    <CaseStudyButton
-                      large
-                      tone={buttonTone}
-                      to={to}
-                      onNavigate={rememberCard}
-                      onPrefetch={to ? () => prefetchCaseStudy(to) : undefined}
-                    >
-                      Apri case study
-                    </CaseStudyButton>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </CaseSection>
+        <OtherProjects ids={["bob-noorda", "nattbad"]} />
       </main>
     </motion.div>
   );

@@ -1,6 +1,7 @@
 import ProjectCard, { type Project } from "./ProjectCard";
 import fuoriCorsoImg from "../assets/images/project-fuoricorso.jpg";
 import headSpaImg from "../assets/images/project-headspa.webp";
+import nattbadImg from "../assets/images/project-nattbad.webp";
 import spreadMilano from "../assets/bob-noorda/spread-milano.jpg";
 import spreadNewYork from "../assets/bob-noorda/spread-newyork.jpg";
 import spreadSaoPaulo from "../assets/bob-noorda/spread-saopaulo.jpg";
@@ -40,7 +41,7 @@ const PROJECTS: Project[] = [
     id: "bob-noorda",
     to: "/bob-noorda",
     period: "Apr – Giu 2026",
-    title: ["Progetto universitario:", "Mostra su Bob Noorda"],
+    title: ["Progetto universitario", "Mostra su Bob Noorda"],
     description:
       "Identità visiva e materiali per la mostra: ideare il concept e i materiali di comunicazione (catalogo, invito, social...).",
     gallery: [
@@ -53,24 +54,30 @@ const PROJECTS: Project[] = [
     buttonTone: "border-white bg-[#f7c101] text-black",
   },
   {
+    id: "nattbad",
+    to: "/nattbad",
     period: "Feb – Giu 2026",
-    title: ["Progetto universitario:", "Sito web in Wordpress"],
+    title: ["Progetto universitario", "Sito web NATTBAD"],
     description:
       "Realizzazione di un sito responsive (desktop, mobile, tablet) e performante, sviluppato in WordPress.",
-    cardClassName: "bg-[#ffc9f1]",
-    buttonTone: PINK_BUTTON,
+    image: nattbadImg,
+    imageAlt:
+      "Il sito NATTBAD su desktop, mobile e tablet: pagine Home, Prodotto, Playlist, News, Contatti e Promo",
+    imagePadding: "p-6 lg:p-[34.5px]",
+    cardClassName: "border border-[rgba(234,206,190,0.3)] bg-[rgba(210,174,153,0.1)]",
+    buttonTone: "border-white bg-[#eacebe] text-black",
   },
   {
     period: "Ago – Ott 2025",
-    title: ["Sito web palestra:", "Kalos Studio"],
+    title: ["Sito web palestra", "Kalos Studio"],
     description:
       "Realizzazione di un sito responsive, progettazione dell'interfaccia e dell'identità visiva, sviluppato in Framer.",
-    cardClassName: "bg-[#ffc9f1]",
-    buttonTone: PINK_BUTTON,
+    cardClassName: "border border-[rgba(189,41,29,0.3)] bg-[rgba(189,41,29,0.1)]",
+    buttonTone: "border-white bg-[#bd291d] text-white",
   },
   {
     period: "Lug – Sett 2024",
-    title: ["Sito web osteopata:", "Mattia Bettini"],
+    title: ["Sito web osteopata", "Mattia Bettini"],
     description:
       "Realizzazione di un sito responsive, progettazione dell'interfaccia e dell'identità visiva, sviluppato in Framer.",
     cardClassName: "bg-[#ffc9f1]",
