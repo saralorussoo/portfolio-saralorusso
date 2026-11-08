@@ -120,15 +120,17 @@ export default function AboutPage() {
     <div className="min-h-screen w-full bg-white pb-[90px] pt-[79px]">
       <main>
         {/* Title */}
-        <section className="flex flex-col items-center px-6 pt-10 md:pt-[60px]">
-          {/* The avatar group is taller than the row (as in Figma), so it overflows it. */}
-          <div className="flex h-[110px] items-center justify-center gap-1 sm:h-[143px] sm:gap-0">
+        <section className="flex flex-col items-center px-6 pt-10 max-sm:items-start md:pt-[60px]">
+          {/* The avatar group is taller than the row (as in Figma), so it overflows it. On phones the
+              row is left-aligned with the text below; the avatar box has an empty margin on its left
+              (the star starts 8.53% in), pulled back so the visible star lines up with the text. */}
+          <div className="flex h-[110px] items-center justify-center gap-1 max-sm:justify-start sm:h-[143px] sm:gap-0">
             <motion.div
               initial={{ opacity: 0, scale: reduce ? 1 : 0.6, rotate: reduce ? 0 : -14 }}
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
               transition={{ type: "spring", stiffness: 220, damping: 14, delay: 0.1 }}
               whileHover={reduce ? undefined : { scale: 1.06, rotate: [0, -6, 6, -4, 0] }}
-              className="relative size-[clamp(96px,29vw,132px)] shrink-0 sm:size-[173px]"
+              className="relative size-[clamp(96px,29vw,132px)] shrink-0 max-sm:ml-[calc(clamp(96px,29vw,132px)*-0.0853)] sm:size-[173px]"
             >
               <motion.img
                 src={avatarStar}
